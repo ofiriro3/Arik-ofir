@@ -1,4 +1,4 @@
 
-public class RadixSort {
+public class RadixSort implements Sorter {
 
 }
