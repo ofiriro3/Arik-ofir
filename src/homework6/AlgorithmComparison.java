@@ -1,3 +1,4 @@
+package homework6;
 	import java.io.IOException;
 	import java.lang.Math;
 
