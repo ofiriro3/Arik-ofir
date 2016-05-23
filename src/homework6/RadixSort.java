@@ -1,5 +1,7 @@
 package homework6;
 
+import java.util.Arrays;
+
 public class RadixSort implements Sorter {
 
 	/**
@@ -9,14 +11,14 @@ public class RadixSort implements Sorter {
 	@Override
 	public void sort(double[] ar) {
 
-		for (int i = 0; i < ar.length; i++) {
+		for (int i = 10; i > 0 ; i--) {
 			
-			RadixSort(ar , 10-i);
+			RadiXsort(ar , i);
 		}
 		
 	}
 
-	private void RadixSort(double[] ar, int digitToSort) {
+	private void RadiXsort(double[] ar, int digitToSort) {
 		
 		// Create new array for the counting sort of the specific digit
 		int [] CountingSortCells = new int [10];
@@ -24,7 +26,7 @@ public class RadixSort implements Sorter {
 		
 		for (int i = 0; i < ar.length; i++) {
 			
-			int digit = findingDigit(ar[i], digitToSort);
+			int digit = (int)(ar[i] * Math.pow(10, digitToSort)%10);
 			CountingSortCells[digit]++;
 			digitsOfAr[i] = digit;
 		}
@@ -43,12 +45,14 @@ public class RadixSort implements Sorter {
 			
 		}
 		
-		ar = newAr;
+		for (int i = 0; i < newAr.length; i++) {
+			
+			ar[i] = newAr[i];
+		}
 		
-		
-	}
+	} 
 
-	private int findingDigit(double num, int digitToSort) {
+	public int findingDigit(double num, int digitToSort) {
 		
 		for (int j = 0; j < digitToSort; j++) {
 			

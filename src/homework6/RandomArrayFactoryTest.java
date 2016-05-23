@@ -24,8 +24,11 @@ public class RandomArrayFactoryTest {
 	@Test
 	public void RadixSortTest()
 	{
-		double [] array = { 0.523456889 ,0.323456888 ,0.1234567897 ,
-							0.123456789 ,0.922456784 ,0.1238567863};
+		double [] array = new double [10];
+		
+		for (int i = 0; i < array.length; i++) {
+			array[i] = Math.random();
+		}
 		
 		double[] array2 = array.clone();
 		RadixSort sort = new RadixSort();
@@ -34,17 +37,29 @@ public class RandomArrayFactoryTest {
 		
 		for (int i = 0; i < array.length; i++) {
 			
-			System.out.print(array[i]+" ");
-			if(i%3 ==0 && i>0)
-				System.out.println();
+			assertTrue(array2[i] == array[i]);
 		}
 	}
 	@Test
-	public void FindDigit()
+	public void MergeSortTest()
 	{
+		double [] array = new double [10];
 		
-		int i= RadixSort.this.findingDigit(0.123456789, 10);
-				}
+		for (int i = 0; i < array.length; i++) {
+			array[i] = Math.random();
+		}
+		
+		double[] array2 = array.clone();
+		MergeSort sort = new MergeSort();
+		sort.sort(array);
+		Arrays.sort(array2);
+		
+		for (int i = 0; i < array.length; i++) {
+			
+			assertTrue(array[i] == array2[i]);
+		}
+	}
+	
 	
 	
 	
