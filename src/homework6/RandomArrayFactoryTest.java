@@ -59,6 +59,25 @@ public class RandomArrayFactoryTest {
 			assertTrue(array[i] == array2[i]);
 		}
 	}
+	@Test
+	public void InsertionSortTest()
+	{
+		double [] array = new double [10];
+		
+		for (int i = 0; i < array.length; i++) {
+			array[i] = Math.random();
+		}
+		
+		double[] array2 = array.clone();
+		InsertionSort sort = new InsertionSort();
+		sort.sort(array);
+		Arrays.sort(array2);
+		
+		for (int i = 0; i < array.length; i++) {
+			
+			assertTrue(array[i] == array2[i]);
+		}
+	}
 	
 	
 	
