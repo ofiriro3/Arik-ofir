@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class TreeTest {
 	
+
 	Tree tr;
 	
 	@Before
