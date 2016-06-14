@@ -27,18 +27,23 @@ public class TreeNode {
 	{
 		return this.data;
 	}
+	public void setData(double key){
+		this.data = key;
+	}
 	public void setParent(TreeNode parent) {
 		this.parent = parent;
 	}
 
 	public void setLeft(TreeNode left) {
 		this.left = left;
-		left.parent = this;
+		if (left != null)
+			left.parent = this;
 	}
 
 	public void setRight(TreeNode right) {
 		this.right = right;
-		right.parent = this;
+		if (right != null)
+			right.parent = this;	
 	}
 
 	public TreeNode Parent() {

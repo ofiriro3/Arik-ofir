@@ -1,3 +1,4 @@
+import java.lang.Math;
 
 public class Tree {
 
@@ -178,31 +179,68 @@ public class Tree {
 		}
 	}
 
-
 	/**
 	 * 
 	 * @param deleteNode
 	 */
 	public void delete(TreeNode deleteNode)
 	{
-		/////////////////////////notice that i've written the findSuccessor function
-		// but I haven't checked it yet
+        TreeNode y;
+		if (deleteNode.Left() == null || deleteNode.Right() == null)
+            y = deleteNode;
+        else
+            y = findSucessor(deleteNode);
+
+        TreeNode x;
+        if (y.Left() != null)
+            x = y.Left();
+        else
+            x = y.Right();
+
+        if (x != null)
+            x.setParent(y.Parent());
+        if (y.Parent() == null)
+            root = x;
+        else {
+            if (y == y.Parent().Left())
+                y.Parent().setLeft(x);
+            else
+                y.Parent().setRight(x);
+        }
+        if (y.Parent() != null){
+        	updatesHeights(y.Parent());
+        	if (y == deleteNode)
+        		y.Parent().SetSize(y.Parent().GetSize() - 1);
+        }
+        if (y != deleteNode){
+        	deleteNode.SetSize(deleteNode.GetSize() - 1);
+            deleteNode.setData(y.getData());
+        }
 	}
 	/**
 	 * return the rank of the given node (assume the node is in the tree)
 	 */
-	public int OSRank(TreeNode deleteNode)
-	{
-		return -1;
+	public int OSRank(TreeNode requiredNode) {
+		int r;
+		if (requiredNode.Left() != null)
+			r = requiredNode.Left().GetSize() + 1;
+		else
+			r = 1;
+		TreeNode y = requiredNode;
+		while (y != this.root){
+			if (y == y.Parent().Right())
+				r = r + y.Parent().Left().GetSize() + 1;
+			y = y.Parent();
+		}
+		return r;
 	}
 	/**
 	 * 
 	 * @param node
 	 * @return
 	 */
-	public boolean isBalanced(TreeNode node)
-	{
-		return false;
+	public boolean isBalanced(TreeNode node) {
+		return (node.GetHeight() <= 2 * Math.log(node.GetSize()));
 	}
 }
 
